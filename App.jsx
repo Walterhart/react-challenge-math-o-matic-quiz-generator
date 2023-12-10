@@ -95,18 +95,13 @@ export default function App() {
                 getNewProblem()
             }, 2000)
         }
-        return () => clearTimeout(timeOut)
-    }, [recentCorrectAnswer])
-
-    React.useEffect(() => {
-        let timeOut
         if (recentStatusChange) {
             timeOut = setTimeout(() => {
                 setRecentStatusChange(false)
             }, 2000)
         }
         return () => clearTimeout(timeOut)
-    }, [recentStatusChange])
+    }, [recentStatusChange, recentCorrectAnswer])
 
     let inputClass = gameStarted ? "" : "hidden "
 
@@ -201,11 +196,9 @@ export default function App() {
     
     return (
         <div className="wrapper">  
-     
-           
-            {!gameStarted && 
-                 <h1>Math-o-Matic</h1>
-            }
+    
+            {!gameStarted && <h1>Math-o-Matic</h1>}
+            
             <form onSubmit={handleSubmit}>
             
                 <label>
